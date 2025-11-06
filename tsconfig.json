@@ -29,6 +29,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "global.d.ts"
-  ],
+, "next.config.mjs"  ],
   "exclude": ["node_modules"]
 }
