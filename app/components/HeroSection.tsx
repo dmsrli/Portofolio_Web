@@ -20,7 +20,7 @@ export default function HeroSection() {
         <p className="text-lg md:text-xl text-gray-300 mb-6 leading-relaxed">
           A Computer Engineering Graduate specializing in System & Web Development.  
           Passionate about Creative UI/UX Design and Front-End Programming to craft 
-          digital experiences with aesthetic design and efficient logic.
+          digital experiences.
         </p>
       </div>
 
