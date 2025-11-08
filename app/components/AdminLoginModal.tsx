@@ -38,7 +38,7 @@ export default function AdminLoginModal({ isOpen, onClose }: AdminLoginModalProp
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-[9999]"
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-9999"
         >
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}

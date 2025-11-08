@@ -79,7 +79,7 @@ export default function GlobalAdminActivator() {
       {showPulse && isHome && (
         <motion.div
           key="pulse"
-          className="fixed z-[9999] pointer-events-none"
+          className="fixed z-9999 pointer-events-none"
           style={{
             top: pos.y - 15,
             left: pos.x - 15,

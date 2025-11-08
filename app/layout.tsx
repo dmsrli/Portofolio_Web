@@ -17,16 +17,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <head>
+        {/* Meta viewport agar tidak auto-zoom di mobile */}
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
         />
       </head>
-      <body className="relative bg-transparent text-white overflow-hidden antialiased">
-        {/* Adaptive viewport scaling */}
+      <body className="relative bg-transparent text-white overflow-x-hidden antialiased">
+        {/* Adaptive scaling (non-destructive) */}
         <ViewportScaler />
 
+        {/* Semua konten utama */}
         <ClientLayout>{children}</ClientLayout>
+
+        {/* Hidden Admin Access */}
         <ClientChibiTrigger />
         <GlobalAdminActivator />
       </body>
