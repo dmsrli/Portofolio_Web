@@ -1,20 +1,43 @@
 'use client'
-
 import { useEffect } from 'react'
 
 export default function ViewportScaler() {
   useEffect(() => {
-    const updateViewportUnits = () => {
-      const vw = window.innerWidth * 0.01
-      const vh = window.innerHeight * 0.01
-      document.documentElement.style.setProperty('--vw', `${vw}px`)
-      document.documentElement.style.setProperty('--vh', `${vh}px`)
+    const handleResize = () => {
+      const baseWidth = 1440
+      const baseHeight = 900
+      const scaleX = window.innerWidth / baseWidth
+      const scaleY = window.innerHeight / baseHeight
+      const scale = Math.min(scaleX, scaleY)
+
+      document.documentElement.style.setProperty('--viewport-zoom', scale.toString())
     }
 
-    updateViewportUnits()
-    window.addEventListener('resize', updateViewportUnits)
-    return () => window.removeEventListener('resize', updateViewportUnits)
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  return null
+  return (
+    <style jsx global>{`
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      body {
+        zoom: var(--viewport-zoom);
+        transform-origin: top left;
+        background-color: transparent;
+      }
+
+      /* Tambahkan sedikit padding aman supaya tidak ada bagian terpotong */
+      #__next {
+        padding: 20px;
+        box-sizing: border-box;
+      }
+    `}</style>
+  )
 }

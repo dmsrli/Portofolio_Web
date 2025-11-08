@@ -17,28 +17,42 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
     <>
       {/* === Background global === */}
       {isHomePage && (
-        <div className="fixed inset-0 -z-50">
+        <div className="fixed inset-0 -z-50 overflow-hidden">
           <BackgroundVideo />
-          {/* Overlay blur */}
+          {/* Overlay blur full screen */}
           <div className="absolute inset-0 bg-[rgba(10,20,35,0.4)] backdrop-blur-lg pointer-events-none" />
         </div>
       )}
 
-      {/* Global Music */}
+      {/* Global Background Music */}
       <BackgroundMusic />
 
-      {/* === Semua konten utama === */}
-      <div className="relative z-10 min-h-screen flex flex-col text-white">
-        {/* Navbar dipisah supaya tidak kena overflow */}
+      {/* === Konten utama === */}
+      <div className="relative z-10 min-h-screen flex flex-col text-white items-center justify-center overflow-hidden">
+        {/* Navbar */}
         {isHomePage && <Navbar />}
 
-        {/* Konten utama dengan lebar dikunci */}
-        <main className="flex-1 flex justify-center">
-          <div className="w-[1440px] max-w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+        {/* Area utama terpusat & scalable */}
+        <main className="flex-1 flex items-center justify-center w-full overflow-hidden">
+          <div
+            className="
+              relative 
+              w-[1440px] 
+              h-[900px] 
+              max-w-full 
+              max-h-[100vh] 
+              flex 
+              flex-col 
+              items-center 
+              justify-center 
+              px-4 sm:px-6 md:px-8
+            "
+          >
             {children}
           </div>
         </main>
 
+        {/* Footer */}
         {isHomePage && <Footer />}
       </div>
     </>

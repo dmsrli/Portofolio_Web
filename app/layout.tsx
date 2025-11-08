@@ -16,13 +16,17 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="relative bg-transparent text-white overflow-x-hidden antialiased">
+      <head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        />
+      </head>
+      <body className="relative bg-transparent text-white overflow-hidden antialiased">
         {/* Adaptive viewport scaling */}
         <ViewportScaler />
 
         <ClientLayout>{children}</ClientLayout>
-
-        {/* Hidden Admin Access */}
         <ClientChibiTrigger />
         <GlobalAdminActivator />
       </body>
