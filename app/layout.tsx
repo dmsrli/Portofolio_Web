@@ -3,7 +3,6 @@ import type { Metadata } from 'next'
 import ClientLayout from './ClientLayout'
 import ClientChibiTrigger from './components/ClientChibiTrigger'
 import GlobalAdminActivator from './components/GlobalAdminActivator'
-import ViewportScaler from './components/ViewportScaler'
 
 export const metadata: Metadata = {
   title: 'Dimas Portfolio',
@@ -16,21 +15,8 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <head>
-        {/* Meta viewport agar tidak auto-zoom di mobile */}
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-        />
-      </head>
-      <body className="relative bg-transparent text-white overflow-x-hidden antialiased">
-        {/* Adaptive scaling (non-destructive) */}
-        <ViewportScaler />
-
-        {/* Semua konten utama */}
+      <body className="text-white bg-transparent antialiased overflow-x-hidden">
         <ClientLayout>{children}</ClientLayout>
-
-        {/* Hidden Admin Access */}
         <ClientChibiTrigger />
         <GlobalAdminActivator />
       </body>
