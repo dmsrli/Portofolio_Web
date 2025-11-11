@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-/* Background neuron (tidak diubah) */
 @layer utilities {
   .bg-neuron {
     background-image:
@@ -29,7 +28,12 @@ html, body {
   scroll-behavior: smooth;
 }
 
-/* Blur global di bawah video */
+.mobile-blur {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: rgba(10, 20, 35, 0.25);
+}
+
 body::before {
   content: "";
   position: fixed;
@@ -37,10 +41,10 @@ body::before {
   z-index: -40;
   background: rgba(10,20,35,0.25);
   backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   pointer-events: none;
 }
 
-/* Global mobile-friendly typography */
 @media (max-width: 640px) {
   h1, .h1 { font-size: 1.9rem !important; line-height: 1.2 !important; }
   h2, .h2 { font-size: 1.6rem !important; line-height: 1.25 !important; }
@@ -57,7 +61,6 @@ body::before {
   }
 }
 
-/* Remove background gelap di section (biar tidak nge-lock lebar) */
 section {
   background: transparent !important;
 }
