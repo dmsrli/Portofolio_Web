@@ -5,7 +5,7 @@ import { FaPause, FaPlay } from 'react-icons/fa'
 
 export default function BackgroundMusic() {
   const audioRef = useRef<HTMLAudioElement>(null)
-  const [isPlaying, setIsPlaying] = useState(true)
+  const [isPlaying, setIsPlaying] = useState(false)
 
   useEffect(() => {
     const audio = audioRef.current
@@ -14,35 +14,21 @@ export default function BackgroundMusic() {
     audio.loop = true
     audio.volume = 0.45
 
-    // ⛔ Chrome tidak mengizinkan autoplay sebelum interaksi
-    // ✅ Coba autoplay langsung
-    audio.play().catch(() => {})
-
-    // ✅ Fallback unlock
-    const unlock = () => {
+    const tryPlay = () => {
+      if (!isPlaying) return
       audio.play().catch(() => {})
     }
 
-    window.addEventListener('click', unlock)
-    window.addEventListener('scroll', unlock)
-    window.addEventListener('mousemove', unlock)
-    window.addEventListener('touchstart', unlock)
+    const unlock = () => tryPlay()
 
-    // ✅ Safety retry setiap 2 detik sampai jalan
-    const retry = setInterval(() => {
-      audio.play().then(() => {
-        clearInterval(retry)
-      }).catch(() => {})
-    }, 2000)
+    window.addEventListener('click', unlock)
+    window.addEventListener('touchstart', unlock)
 
     return () => {
       window.removeEventListener('click', unlock)
-      window.removeEventListener('scroll', unlock)
-      window.removeEventListener('mousemove', unlock)
       window.removeEventListener('touchstart', unlock)
-      clearInterval(retry)
     }
-  }, [])
+  }, [isPlaying])
 
   const toggleMusic = () => {
     const audio = audioRef.current
